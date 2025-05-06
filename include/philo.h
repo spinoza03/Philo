@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:12:38 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/03 16:35:28 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:50:34 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_philo
 	pthread_mutex_t	left_fork;
 }	t_philo;
 
-typedef	struct s_data
+typedef struct	s_data
 {
 	int	num_philos;
 	int	time_to_die;
@@ -47,8 +47,8 @@ typedef	struct s_data
 	t_philo	*philos;
 }	t_data;
 
-
-int	pars_args(char *str);
+int		fill_data(char **av);
+int		pars_args(char *str);
 void	ft_putstr_fd(char *s, int fd);
-int	ft_atoi(const char *str, int *error);
+int		ft_atoi(const char *str, int *error);
 #endif

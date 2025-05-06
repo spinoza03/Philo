@@ -1,47 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/03 15:51:06 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/05 11:17:51 by ilallali         ###   ########.fr       */
+/*   Created: 2025/05/05 11:22:06 by ilallali          #+#    #+#             */
+/*   Updated: 2025/05/06 13:44:43 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_isdigit(int c)
+int	fill_data(char **av)
 {
-	return (c >= '0' && c <= '9');
-}
-
-int	is_valid_integer(char *str)
-{
-	if (!str || !*str)
-	return (0);
-	if (*str == '-' || *str == '+')
-	str++;
-	if (!*str)
-	return (0);
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-		return (0);
-		str++;
-	}
-	return (1);
-}
-
-int	pars_args(char *str)
-{
-	int		error;
+	t_data *data;
 	
-	if (!is_valid_integer(str))
-		return (0);
-	ft_atoi(str, &error);
-	if (!error)
-		return (0);
-	return (1);
+	data->num_philos = ft_atoi(av[1],1);
+	data->time_to_die = ft_atoi(av[2],1);
+	data->time_to_eat = ft_atoi(av[3],1);
+	data->time_to_sleep = ft_atoi(av[4],1);
+	data->required_meal = ft_atoi(av[5],1);
 }

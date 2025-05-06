@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:31:49 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/03 16:21:11 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:44:20 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int main (int ac, char **av)
 		}
 		return 0;
 	}
+	fill_data(av);
 	ft_putstr_fd("Error: Expected 4 or 5 arguments\n",2);
 }
