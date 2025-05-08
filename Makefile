@@ -3,7 +3,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = philo
 
-SRC = src/main.c src/pars.c utils/atoi_ph.c utils/putstr.c
+SRC = src/main.c src/pars.c utils/atoi_ph.c utils/putstr.c src/init.c src/start_sim.c\
+		utils/actions.c utils/time.c
 
 OBJ = ${SRC:.c=.o}
 HEADER = include/philo.h

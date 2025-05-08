@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:12:38 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/06 18:50:34 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/05/08 20:29:23 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,45 @@
 
 typedef struct s_philo
 {
-	int			id;
-	pthread_t	thread;
+	int				id;
+	int				meals_eaten;
+	long			last_meal_time;
+	int				left_fork_id;
+	int				right_fork_id;
+	pthread_t		thread;
 	pthread_mutex_t	meal_lock;
-	pthread_mutex_t	time_lock;
-	pthread_mutex_t	death_lock;
-	pthread_mutex_t	right_fork;
-	pthread_mutex_t	left_fork;
+	struct s_data	*data;
 }	t_philo;
 
-typedef struct	s_data
+typedef struct s_data
 {
-	int	num_philos;
-	int	time_to_die;
-	int	time_to_sleep;
-	int	time_to_eat;
-	int	must_eat;
-	int	required_meal;
-	int	meal_eat;
-	int	someone_die;
-	long	start_time;
-	pthread_mutex_t	forks;
+	int				num_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
+	int				someone_die;
+	long			start_time;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
-	t_philo	*philos;
+	pthread_mutex_t	death_mutex;
+	t_philo			*philos;
 }	t_data;
 
-int		fill_data(char **av);
+int	fill_data(char **av, t_data *data);
+int		init_philos(t_data *data);
 int		pars_args(char *str);
 void	ft_putstr_fd(char *s, int fd);
-int		ft_atoi(const char *str, int *error);
+int		ft_atoi(const char *str);
+long	get_curent_time(void);
+void	ft_usleep(long time);
+void	print_act(t_philo *philo, char *action);
+void	pick_up(t_philo *philo);
+void	put_down(t_philo *philo);
+int		chi_7ed_mat(t_data *data);
+int		start_simulation(t_data *data);
+void	print_act(t_philo *philo, char *msg);
+void	pick_up(t_philo *philo);
+void	put_down(t_philo *philo);
+int		has_someone_died(t_data *data);
 #endif

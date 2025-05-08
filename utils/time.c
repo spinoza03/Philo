@@ -1,44 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/03 15:51:06 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/08 16:38:48 by ilallali         ###   ########.fr       */
+/*   Created: 2025/05/08 16:42:29 by ilallali          #+#    #+#             */
+/*   Updated: 2025/05/08 19:57:37 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_isdigit(int c)
+long	get_curent_time(void)
 {
-	return (c >= '0' && c <= '9');
-}
+	struct timeval	time;
+	long			ms;
 
-int	is_valid_integer(char *str)
-{
-	if (!str || !*str)
-		return (0);
-	if (*str == '-' || *str == '+')
-		str++;
-	if (!*str)
-		return (0);
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			return (0);
-		str++;
-	}
-	return (1);
+	gettimeofday(&time, NULL);
+	ms = (time.tv_sec *1000) + (time.tv_usec / 1000);
+	return (ms);
 }
-
-int	pars_args(char *str)
+void	ft_usleep(long time)
 {
-	if (!is_valid_integer(str))
-		return (0);
-	if (!ft_atoi(str))
-		return (0);
-	return (1);
+	long	start;
+
+	start = get_curent_time();
+	while ((get_curent_time() - start) < time)
+		usleep(500);
 }
