@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:31:49 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/08 19:20:33 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/05/08 21:36:23 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,20 @@ int	main(int ac, char **av)
 	t_data	data;
 	int		i;
 
+	i = 1;
 	if (ac != 5 && ac != 6)
 	{
 		ft_putstr_fd("Error: Expected 4 or 5 arguments\n", 2);
 		return (1);
 	}
-	i = 1;
-	while (i++ < ac)
+	while (i < ac)
 	{
 		if (!pars_args(av[i]))
 		{
 			ft_putstr_fd("Error: Invalid argument\n", 2);
 			return (1);
 		}
+		i++;
 	}
 	if (fill_data(av, &data) == -1)
 		return (error_exit("Data init failed"));

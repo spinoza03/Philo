@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:51:06 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/08 16:38:48 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/05/08 21:39:57 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	pars_args(char *str)
 {
 	if (!is_valid_integer(str))
 		return (0);
-	if (!ft_atoi(str))
+	if (!ft_atoi(str)) // what if ./philo 0 0 0 0
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:12:38 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/08 20:29:23 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:00:44 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	death_mutex;
+	pthread_t		death_thread;
+	pthread_t		meal_thread;
 	t_philo			*philos;
 }	t_data;
 
@@ -57,10 +59,11 @@ void	ft_usleep(long time);
 void	print_act(t_philo *philo, char *action);
 void	pick_up(t_philo *philo);
 void	put_down(t_philo *philo);
-int		chi_7ed_mat(t_data *data);
+int		check_dead(t_data *data);
 int		start_simulation(t_data *data);
 void	print_act(t_philo *philo, char *msg);
 void	pick_up(t_philo *philo);
 void	put_down(t_philo *philo);
-int		has_someone_died(t_data *data);
+int		check_dead(t_data *data);
+void	*death_monitor(void *arg);
 #endif
