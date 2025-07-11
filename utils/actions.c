@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 20:13:09 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/10 18:03:30 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:22:01 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pick_up(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
-	if(philo->id % 2 == 0)
+	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(&data->forks[philo->right_fork_id]);
 		print_act(philo, "has taken a fork");

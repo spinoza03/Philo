@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 16:02:29 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/10 20:16:31 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:23:59 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * result);
 }
+
 int	ft_atoi1(const char *str, int *num)
 {
 	int		sign;

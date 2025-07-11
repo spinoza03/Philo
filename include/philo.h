@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:12:38 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/10 18:41:35 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:16:02 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@
 # include <limits.h>
 # include <sys/time.h>
 
+struct	s_data;
+
 typedef struct s_philo
 {
 	int				id;
 	int				meals_eaten;
-	long			last_meal_time;
 	int				left_fork_id;
 	int				right_fork_id;
+	long			last_meal_time;
 	pthread_t		thread;
 	pthread_mutex_t	meal_lock;
 	struct s_data	*data;
@@ -49,30 +51,35 @@ typedef struct s_data
 	t_philo			*philos;
 }	t_data;
 
+/*
+** --- Function Prototypes ---
+*/
+
+/* Initialization */
 int		fill_data(char **av, t_data *data);
 int		init_philos(t_data *data);
-
-// PARSING & UTILS
 int		pars_args(char *str);
-void	ft_putstr_fd(char *s, int fd);
-int		ft_atoi(const char *str);
-long	get_curent_time(void);
-void	ft_usleep(long time);
 
-// SIMULATION
+/* Simulation */
 int		start_simulation(t_data *data);
 void	*routine(void *arg);
 
-// ACTIONS & MONITORS
+/* Actions */
 void	print_act(t_philo *philo, char *msg);
 void	pick_up(t_philo *philo);
 void	put_down(t_philo *philo);
+
+/* Monitors */
 int		check_dead(t_data *data);
 void	*death_monitor(void *arg);
-void	*meals_monitor(void *arg); // Add prototype for meals_monitor
+void	*meals_monitor(void *arg);
 
-/* FUNCTIONS */
-int	is_space(char c);
-int	ft_atoi1(const char *str, int *num);
+/* Utils */
+void	ft_putstr_fd(char *s, int fd);
+int		ft_atoi(const char *str);
+int		ft_atoi1(const char *str, int *num);
+long	get_curent_time(void);
+void	ft_usleep(long time, t_data *data);
+int		is_space(char c);
 
 #endif

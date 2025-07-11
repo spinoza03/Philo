@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:31:49 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/08 21:36:23 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:17:58 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	error_exit(char *msg)
 	ft_putstr_fd("\n", 2);
 	return (1);
 }
+
 void	join_threads(t_data *data)
 {
 	int	i;
@@ -29,6 +30,7 @@ void	join_threads(t_data *data)
 		i++;
 	}
 }
+
 void	cleanup(t_data *data)
 {
 	free(data->forks);
@@ -48,12 +50,11 @@ int	main(int ac, char **av)
 	}
 	while (i < ac)
 	{
-		if (!pars_args(av[i]))
+		if (!pars_args(av[i++]))
 		{
 			ft_putstr_fd("Error: Invalid argument\n", 2);
 			return (1);
 		}
-		i++;
 	}
 	if (fill_data(av, &data) == -1)
 		return (error_exit("Data init failed"));
