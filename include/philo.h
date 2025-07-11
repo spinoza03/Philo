@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:12:38 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/09 15:00:44 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:41:35 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,30 @@ typedef struct s_data
 	t_philo			*philos;
 }	t_data;
 
-int	fill_data(char **av, t_data *data);
+int		fill_data(char **av, t_data *data);
 int		init_philos(t_data *data);
+
+// PARSING & UTILS
 int		pars_args(char *str);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_atoi(const char *str);
 long	get_curent_time(void);
 void	ft_usleep(long time);
-void	print_act(t_philo *philo, char *action);
-void	pick_up(t_philo *philo);
-void	put_down(t_philo *philo);
-int		check_dead(t_data *data);
+
+// SIMULATION
 int		start_simulation(t_data *data);
+void	*routine(void *arg);
+
+// ACTIONS & MONITORS
 void	print_act(t_philo *philo, char *msg);
 void	pick_up(t_philo *philo);
 void	put_down(t_philo *philo);
 int		check_dead(t_data *data);
 void	*death_monitor(void *arg);
+void	*meals_monitor(void *arg); // Add prototype for meals_monitor
+
+/* FUNCTIONS */
+int	is_space(char c);
+int	ft_atoi1(const char *str, int *num);
+
 #endif

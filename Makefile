@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread
 NAME = philo
 
 SRC = src/main.c src/pars.c utils/atoi_ph.c utils/putstr.c src/init.c src/start_sim.c\
-		utils/actions.c utils/time.c
+		utils/actions.c utils/time.c utils/death.c
 
 OBJ = ${SRC:.c=.o}
 HEADER = include/philo.h

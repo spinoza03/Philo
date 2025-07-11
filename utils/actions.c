@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 20:13:09 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/09 18:52:26 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:03:30 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	put_down(t_philo *philo)
 	pthread_mutex_unlock(&data->forks[philo->right_fork_id]);
 }
 
-#include <string.h>
-
 void	print_act(t_philo *philo, char *msg)
 {
 	t_data	*data;
@@ -67,33 +65,4 @@ int	check_dead(t_data *data)
 	dead = data->someone_die;
 	pthread_mutex_unlock(&data->death_mutex);
 	return (dead);
-}
-
-void	*death_monitor(void *arg)
-{
-	t_data	*data;
-	int		i;
-	long	time;
-
-	data = (t_data *)arg;
-	while (1)
-	{
-		i = 0;
-		while (i < data->num_philos)
-		{
-			pthread_mutex_lock(&data->philos[i].meal_lock);
-			time = get_curent_time() - data->philos[i].last_meal_time;
-			pthread_mutex_unlock(&data->philos[i].meal_lock);
-			if (time > data->time_to_die)
-			{
-				print_act(&data->philos[i], "died");
-				pthread_mutex_lock(&data->death_mutex);
-				data->someone_die = 1;
-				pthread_mutex_unlock(&data->death_mutex);
-				return (NULL);
-			}
-			i++;
-		}
-		usleep(100);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:23:14 by ilallali          #+#    #+#             */
-/*   Updated: 2025/05/09 18:38:58 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/10 20:33:52 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ int	start_simulation(t_data *data)
 	}
 	if (pthread_create(&data->death_thread, NULL, death_monitor, data) != 0)
 		return (-1);
+	if (data->must_eat > 0)
+	{
+		if (pthread_create(&data->meal_thread, NULL, meals_monitor, data) != 0)
+			return (-1);
+		pthread_join(data->meal_thread, NULL);
+	}
 	pthread_join(data->death_thread, NULL);
 	return (0);
 }
