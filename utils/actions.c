@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 20:13:09 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/11 18:22:01 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:57:12 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	put_down(t_philo *philo)
 void	print_act(t_philo *philo, char *msg)
 {
 	t_data	*data;
-	long	timestamp;
+	long	current_time;
 
 	data = philo->data;
 	pthread_mutex_lock(&data->print_mutex);
 	if (!check_dead(data))
 	{
-		timestamp = get_curent_time() - data->start_time;
-		printf("%ld %d %s\n", timestamp, philo->id + 1, msg);
+		current_time = get_curent_time() - data->start_time;
+		printf("%ld %d %s\n", current_time, philo->id + 1, msg);
 	}
 	pthread_mutex_unlock(&data->print_mutex);
 }

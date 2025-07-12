@@ -1,6 +1,6 @@
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror
 NAME = philo
 
 SRC = src/main.c src/pars.c utils/atoi_ph.c utils/putstr.c src/init.c src/start_sim.c\

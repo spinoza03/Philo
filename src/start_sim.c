@@ -6,11 +6,29 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:23:14 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/11 18:29:06 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/12 02:53:58 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	cleanup_on_failure(t_data *data, int n_philos, int death_created)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_lock(&data->death_mutex);
+	data->someone_die = 1;
+	pthread_mutex_unlock(&data->death_mutex);
+	while (i < n_philos)
+	{
+		pthread_join(data->philos[i].thread, NULL);
+		i++;
+	}
+	if (death_created)
+		pthread_join(data->death_thread, NULL);
+	return (-1);
+}
 
 void	*routine(void *arg)
 {
@@ -36,7 +54,7 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-static int	all_philos_are_full(t_data *data)
+static int	all_philos_eated(t_data *data)
 {
 	int	i;
 	int	full_philos;
@@ -65,7 +83,7 @@ void	*meals_monitor(void *arg)
 		return (NULL);
 	while (!check_dead(data))
 	{
-		if (all_philos_are_full(data))
+		if (all_philos_eated(data))
 		{
 			pthread_mutex_lock(&data->death_mutex);
 			data->someone_die = 1;
@@ -80,6 +98,7 @@ void	*meals_monitor(void *arg)
 int	start_simulation(t_data *data)
 {
 	int	i;
+	int	j;
 
 	data->start_time = get_curent_time();
 	i = 0;
@@ -88,31 +107,18 @@ int	start_simulation(t_data *data)
 		data->philos[i].last_meal_time = data->start_time;
 		if (pthread_create(&data->philos[i].thread,
 				NULL, routine, &data->philos[i]) != 0)
-			return (-1);
+			return (cleanup_on_failure(data, i, 0));
 		i++;
 	}
 	if (pthread_create(&data->death_thread, NULL, death_monitor, data) != 0)
-		return (-1);
+		return (cleanup_on_failure(data, data->num_philos, 0));
 	if (data->must_eat > 0)
 	{
 		if (pthread_create(&data->meal_thread, NULL, meals_monitor, data) != 0)
-			return (-1);
+			return (cleanup_on_failure(data, data->num_philos, 1));
 	}
 	pthread_join(data->death_thread, NULL);
 	if (data->must_eat > 0)
-		pthread_join(data->meal_thread, NULL);
+		return (pthread_join(data->meal_thread, NULL));
 	return (0);
 }
-
-/*
- Cases
- -1- ./philo 5 800 200 200 no death
- -2- ./philo 200 60 60 60 death
- -3- ./philo 2 410 200 200 no death
- -4- ./philo 2 310 200 100 death
-	*------------------------------------------------------------------------------*
-	| if num_of_philos ? odd : time_to_die = time_to_eat x 2 + time_to_sleep + 10  |
-	|																		       |
-	| if num_of_philos ? even : time_to_die = time_to_eat + time_to_sleep + 10     |
-	*------------------------------------------------------------------------------*
-*/
