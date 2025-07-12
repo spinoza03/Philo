@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:23:14 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/12 02:53:58 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:13:43 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	*meals_monitor(void *arg)
 int	start_simulation(t_data *data)
 {
 	int	i;
-	int	j;
 
 	data->start_time = get_curent_time();
 	i = 0;

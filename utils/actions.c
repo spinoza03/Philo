@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 20:13:09 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/11 19:57:12 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/12 15:39:09 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,11 @@ int	check_dead(t_data *data)
 	dead = data->someone_die;
 	pthread_mutex_unlock(&data->death_mutex);
 	return (dead);
+}
+void    one_philo(t_data *data)
+{
+    data->start_time = get_curent_time();
+    printf("%ld 1 has taken a fork\n", get_curent_time() - data->start_time);
+    ft_usleep(data->time_to_die, data);
+    printf("%ld 1 died\n", get_curent_time() - data->start_time);
 }

@@ -82,4 +82,10 @@ long	get_curent_time(void);
 void	ft_usleep(long time, t_data *data);
 int		is_space(char c);
 
+
+/* FUNCTIONS */
+void    one_philo(t_data *data);
+void    handle_one_philo(t_data *data);
+void	cleanup(t_data *data);
+
 #endif
