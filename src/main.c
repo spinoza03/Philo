@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:31:49 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/12 15:35:19 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/12 15:45:38 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	cleanup(t_data *data)
 	free(data->forks);
 	free(data->philos);
 }
+
 static int	run_simulation(t_data *data)
 {
 	if (start_simulation(data) == -1)
@@ -44,10 +45,10 @@ static int	run_simulation(t_data *data)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_data	data;
-    int		i;
+	t_data	data;
+	int		i;
 
 	i = 1;
 	if (ac != 5 && ac != 6)

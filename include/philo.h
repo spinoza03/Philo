@@ -6,7 +6,7 @@
 /*   By: ilallali <ilallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:12:38 by ilallali          #+#    #+#             */
-/*   Updated: 2025/07/12 02:52:39 by ilallali         ###   ########.fr       */
+/*   Updated: 2025/07/12 15:41:57 by ilallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,8 @@ long	get_curent_time(void);
 void	ft_usleep(long time, t_data *data);
 int		is_space(char c);
 
-
 /* FUNCTIONS */
-void    one_philo(t_data *data);
-void    handle_one_philo(t_data *data);
+void	one_philo(t_data *data);
 void	cleanup(t_data *data);
 
 #endif
